@@ -22,6 +22,6 @@ def clientinf():
     program client <Option>
 
 Option:
-    <IP>            enter the IP address of the host
+    <IP>            Enter the IP address of the host
     --help  -h      Loads this message  
     '''
