@@ -18,3 +18,11 @@ def inpmsg(val):
 def msg(val,e='\n',s=' '):
     print("[" + Fore.GREEN + "INF" + Fore.RESET + "]",end=' ')
     print(val,end=e,sep=s)
+
+def warnmsg(val,e="\n",s=" "):
+    print("[" + Fore.YELLOW + "WAR" + Fore.RESET + "]",end=' ')
+    print(val,end=e,sep=s)
+
+
+
+    

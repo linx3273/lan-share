@@ -2,13 +2,15 @@ import sys
 import src.msgs as msgs
 import src.usage as usage
 import src.host as host
+import src.client as client
 import re
 import os
+from pathlib import Path
 
 def main():
     # ipMatch = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
     ipMatch = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$"
-    currentDir = "./" 
+    currentDir =  Path().cwd().as_posix()
 
     if len(sys.argv)==1:
         print(usage.inf())
@@ -25,11 +27,11 @@ def main():
                 elif re.search(ipMatch,sys.argv[2]):
                     if len(sys.argv)>3:
                         if os.path.isdir(sys.argv[3]):
-                            pass # path provided client
+                            client.client(sys.argv[2],Path(sys.argv[3]).as_posix())
                         else:
                             msgs.errmsg("Directory not found")
                     else:
-                        pass    # default path client
+                        client.client(sys.argv[2],currentDir)
                 else:
                     msgs.errmsg("Invalid Argument/IP address provided. Run '<program> client --help")
             else:
@@ -43,11 +45,11 @@ def main():
                 elif os.path.isfile(sys.argv[2]):
                     if len(sys.argv)>3:
                         if sys.argv[3]=="set-verify":
-                            pass # set-verify ON host
+                            host.host(Path(sys.argv[2]).as_posix(),1)
                         else:
                             msgs.errmsg("Invalid argument provided. Run '<program> host --help'")
                     else:
-                        pass    # set-verify OFF host
+                        host.host(Path(sys.argv[2]).as_posix(),0)
                 else:
                     msgs.errmsg("Invalid Argument/File not found. Run '<program> host --help'")
             else:
