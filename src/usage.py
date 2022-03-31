@@ -1,6 +1,6 @@
 def inf():
     return '''Usage:
-    program <Option>
+    lshare <Option>
 
 Option:
     client   c      Runs program with you connecting to a host
@@ -10,7 +10,7 @@ Option:
 
 def hostinf():
     return '''Usage
-    program host <Options [set-verify]
+    lshare host <Options [set-verify]
 
 Option:
     path            
@@ -22,7 +22,7 @@ set-verify          [OPTIONAL FIELD] Will ask for confirmation when receiving a 
 
 def clientinf():
     return '''Usage
-    program client <Option> [PATH]
+    lshare client <Option> [PATH]
 
 Option:
     <IP>            Enter the IP address of the host. FORMAT - IP:PORT
