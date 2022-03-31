@@ -43,8 +43,8 @@ def host(fileloc,setverify=0):
     conn,addr = sv.accept()
 
     if setverify==1:
-        print(f"Received request from {addr[0]}")
-        c = input("Accept connection? [y/n]: ").upper()
+        msgs.msg(f"Received request from {addr[0]}")
+        c = msgs.inpmsg("Accept connection? [y/n]: ").upper()
         if c=="Y":
             conn.send("1".encode())
             __sendFile(conn,fileloc)
