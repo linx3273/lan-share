@@ -3,6 +3,7 @@ import src.msgs as msgs
 from tqdm import tqdm
 import os
 from pathlib import Path
+import time
 
 def __checkSetVerify(val):
     if val==1:
@@ -17,6 +18,7 @@ def __sendFile(conn,fileloc):
     inf = f"{filename}?{filesize}"
 
     conn.send(inf.encode())
+    time.sleep(1)
     bar = tqdm(range(filesize),"Sending: ",unit="B",unit_scale=True,unit_divisor=SIZE)
     with open(fileloc,"rb") as f:
         while True:
