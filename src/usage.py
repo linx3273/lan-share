@@ -1,6 +1,6 @@
 def inf():
     return '''Usage:
-    lshare <Option>
+    lan-share <Option>
 
 Option:
     client   c      Runs program with you connecting to a host
@@ -13,19 +13,19 @@ Source code: github.com/linx3273/lan-share/
 
 def hostinf():
     return '''Usage
-    lshare host <Options> [set-verify]
+    lan-share host <Options> [no-verify]
 
 Option:
     path            Enter absolute path of file that is to be sent to the client
     --help  -h      Loads this message
 
-set-verify          [OPTIONAL FIELD] Will ask for confirmation when receiving a connection.
-                    If not provided it will not ask for confirmation
+no-verify          [OPTIONAL FIELD] Will not ask for confirmation when receiving a connection.
+                    If not provided it will ask for confirmation.
 '''
 
 def clientinf():
     return '''Usage
-    lshare client <Option> [PATH]
+    lan-share client <Option> [PATH]
 
 Option:
     <IP>            Enter the IP address of the host. FORMAT - IP:PORT

@@ -22,7 +22,3 @@ def msg(val,e='\n',s=' '):
 def warnmsg(val,e="\n",s=" "):
     print("[" + Fore.YELLOW + "WAR" + Fore.RESET + "]",end=' ')
     print(val,end=e,sep=s)
-
-
-
-    

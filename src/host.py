@@ -4,9 +4,13 @@ from tqdm import tqdm
 import os
 from pathlib import Path
 import time
+from colorama import Fore
+import colorama
 
-def __checkSetVerify(val):
-    if val==1:
+colorama.init(autoreset=True)
+
+def __checkNoVerify(val):
+    if val==0:
         msgs.msg("Connection requests will require confirmation")
     else:
         msgs.warnmsg("Connection requests will NOT require confirmation")
@@ -33,28 +37,35 @@ def __sendFile(conn,fileloc):
     return
 
 
-def host(fileloc,setverify=0):
+def host(fileloc,noverify=0):
     sv = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     sv.bind((socket.gethostbyname(socket.gethostname()),0))
     sv.listen()    
     ADDR = sv.getsockname()
-    msgs.msg(f"Server Listening on: {ADDR[0]}:{ADDR[1]}")
-    __checkSetVerify(setverify)
-    conn,addr = sv.accept()
+    msgs.msg("Server listening on:"+ Fore.YELLOW +f"{ADDR[0]}:{ADDR[1]}")
+    __checkNoVerify(noverify)
+    flag = 1
+    while flag:    
+        conn,addr = sv.accept()
 
-    if setverify==1:
-        msgs.msg(f"Received request from {addr[0]}")
-        c = msgs.inpmsg("Accept connection? [y/n]: ").upper()
-        if c=="Y":
-            conn.send("1".encode())
-            __sendFile(conn,fileloc)
+        if noverify==0:
+            msgs.msg("Received request from "+Fore.RED+ f"{addr[0]}")
+            c = msgs.inpmsg("Accept connection? [y/n]: ").upper()
+            if c=="Y":
+                conn.send("1".encode())
+                __sendFile(conn,fileloc)
+                flag = 0
+                sv.close()
+                msgs.msg("Closed Connection")
+            else:
+                conn.send("0".encode())
+                conn.close()
+                msgs.msg("Incoming request denied")
+                msgs.msg("Server listening on:"+ Fore.YELLOW +f"{ADDR[0]}:{ADDR[1]}")
         else:
-            conn.send("0".encode())
+            conn.send("1".encode())
+            msgs.msg(f"{addr[0]} connected")
+            __sendFile(conn,fileloc)
+            flag = 0
             sv.close()
-            msgs.msg("Closed socket")
-    else:
-        conn.send("1".encode())
-        msgs.msg(f"{addr[0]} connected")
-        __sendFile(conn,fileloc)
-        sv.close()
-        msgs.msg("Closed connection")
+            msgs.msg("Closed connection")

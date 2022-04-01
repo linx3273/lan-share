@@ -47,6 +47,7 @@ def client(ip,loc):
     if int(data)==1:
         msgs.msg("Connection Accepted")
         __getFile(conn,loc)
+        msgs.msg("Connection")
         conn.close()
     else:
         msgs.msg("Connection Denied")

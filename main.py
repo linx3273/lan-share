@@ -44,7 +44,7 @@ def main():
                     print(usage.hostinf())
                 elif os.path.isfile(sys.argv[2]):
                     if len(sys.argv)>3:
-                        if sys.argv[3]=="set-verify":
+                        if sys.argv[3]=="no-verify":
                             host.host(Path(sys.argv[2]).as_posix(),1)
                         else:
                             msgs.errmsg("Invalid argument provided. Run 'lshare host --help'")
