@@ -6,4 +6,4 @@ dist/
 
 # files
 *.ps1
-main.spec
+*.spec

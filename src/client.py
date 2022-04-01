@@ -45,12 +45,12 @@ def client(ip,loc):
     
     data = conn.recv(SIZE).decode()
     if int(data)==1:
-        msgs.msg("Connection Accepted")
+        msgs.msg("Connection accepted")
         __getFile(conn,loc)
-        msgs.msg("Connection")
+        msgs.msg("Connection closed")
         conn.close()
     else:
-        msgs.msg("Connection Denied")
+        msgs.msg("Connection denied")
         return
 
 
