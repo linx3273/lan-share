@@ -1,3 +1,9 @@
+# directories
 .venv/
-activate.ps1
 __pycache__/
+build/
+dist/
+
+# files
+*.ps1
+main.spec

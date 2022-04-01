@@ -33,9 +33,9 @@ def main():
                     else:
                         client.client(sys.argv[2],currentDir)
                 else:
-                    msgs.errmsg("Invalid Argument/IP address provided. Run 'lshare client --help")
+                    msgs.errmsg("Invalid argument/IP address provided. Run 'lshare client --help")
             else:
-                msgs.errmsg("Missing Arguments. Run 'lshare client --help'")
+                msgs.errmsg("Missing arguments. Run 'lshare client --help'")
 
 # SEVER MODE CLI HANDLING
         elif sys.argv[1]=="host" or sys.argv[1]=="s":
@@ -51,13 +51,13 @@ def main():
                     else:
                         host.host(Path(sys.argv[2]).as_posix(),0)
                 else:
-                    msgs.errmsg("Invalid Argument/File not found. Run 'lshare host --help'")
+                    msgs.errmsg("Invalid argument/File not found. Run 'lshare host --help'")
             else:
-                msgs.errmsg("Missing Arguments. Run '<progra> host --help'")
+                msgs.errmsg("Missing arguments. Run '<program> host --help'")
 
 # FAIL CASE
         else:
-            msgs.errmsg("Invalid Arguments Provided. Run 'lshare --help'")
+            msgs.errmsg("Invalid arguments provided. Run 'lshare --help'")
 
 
 if __name__=="__main__":

@@ -6,14 +6,17 @@ Option:
     client   c      Runs program with you connecting to a host
     host     s      Runs program with you hosting the connection
     --help  -h      Load this message
+
+
+Source code: github.com/linx3273/lan-share/
     '''
 
 def hostinf():
     return '''Usage
-    lshare host <Options [set-verify]
+    lshare host <Options> [set-verify]
 
 Option:
-    path            
+    path            Enter absolute path of file that is to be sent to the client
     --help  -h      Loads this message
 
 set-verify          [OPTIONAL FIELD] Will ask for confirmation when receiving a connection.

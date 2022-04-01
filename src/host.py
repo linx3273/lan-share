@@ -54,6 +54,7 @@ def host(fileloc,setverify=0):
             msgs.msg("Closed socket")
     else:
         conn.send("1".encode())
+        msgs.msg(f"{addr[0]} connected")
         __sendFile(conn,fileloc)
         sv.close()
         msgs.msg("Closed connection")
