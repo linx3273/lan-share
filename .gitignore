@@ -4,6 +4,7 @@ __pycache__/
 build/
 dist/
 .env/
+./env/
 # files
 *.ps1
 main.spec
