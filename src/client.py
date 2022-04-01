@@ -26,7 +26,10 @@ def __getFile(conn,loc):
             data = conn.recv(SIZE)
 
             if not data:
-                os.system(f"start {Path(loc).parent}")
+                if os.name == "nt":
+                    os.system(f"start {Path(loc).parent}")
+                else:
+                    os.system(f"xdg-open {Path(loc).parent}")
                 break
 
             f.write(data)
