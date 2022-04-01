@@ -17,6 +17,8 @@
 - `python main.py <IP:PORT> [PATH]`
 - [PATH] - Optional field, if not mentioned the program takes the current directory in which the terminal is
 
+# Building Binaries
+- `pyinstaller -D -F -n lan-share -c "main.py"`
 
-## NOTE
+# NOTE
 - as of now only files can be shared, incase an entire directory has to be shared, it must be compressed before sharing.
