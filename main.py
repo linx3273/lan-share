@@ -33,7 +33,7 @@ def main():
                     else:
                         client.client(sys.argv[2],currentDir)
                 else:
-                    msgs.errmsg("Invalid argument/IP address provided. Run 'lshare client --help")
+                    msgs.errmsg("IP address provided. Run 'lshare client --help")
             else:
                 msgs.errmsg("Missing arguments. Run 'lshare client --help'")
 
@@ -51,7 +51,7 @@ def main():
                     else:
                         host.host(Path(sys.argv[2]).as_posix(),0)
                 else:
-                    msgs.errmsg("Invalid argument/File not found. Run 'lshare host --help'")
+                    msgs.errmsg("File not found. Run 'lshare host --help'")
             else:
                 msgs.errmsg("Missing arguments. Run '<program> host --help'")
 
