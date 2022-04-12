@@ -37,9 +37,19 @@ def __sendFile(conn,fileloc):
     return
 
 
-def host(fileloc,noverify=0):
+def host(fileloc,noverify=0,PORT=None):
     sv = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    sv.bind((socket.gethostbyname(socket.gethostname()),0))
+    if PORT==None:
+        msgs.msg(f"Using custom port {PORT}")
+        sv.bind((socket.gethostbyname(socket.gethostname()),PORT))
+    else:
+        try:
+            sv.bind((socket.gethostbyname(socket.gethostname()),8000))
+        except:
+            msgs.errmsg("Default port 8000 is already in use")
+            msgs.msg("Switching to another port")
+            sv.bind((socket.gethostbyname(socket.gethostname()),0))
+
     sv.listen()    
     ADDR = sv.getsockname()
     msgs.msg("Server listening on:"+ Fore.YELLOW +f"{ADDR[0]}:{ADDR[1]}")
