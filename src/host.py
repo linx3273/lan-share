@@ -36,23 +36,32 @@ def __sendFile(conn,fileloc):
             bar.update(len(data))
     return
 
+def __getIPFromSocket():
+    sv  = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    sv.connect(('8.8.8.8', 80))
+    IP,__port = sv.getsockname()
+    sv.close()
+    return IP
 
 def host(fileloc,noverify=0,PORT=None):
     sv = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    if PORT==None:
+    if PORT!=None:
         msgs.msg(f"Using custom port {PORT}")
-        sv.bind((socket.gethostbyname(socket.gethostname()),PORT))
+        # sv.bind((socket.gethostbyname(socket.gethostname()),PORT))
+        sv.bind((__getIPFromSocket(), PORT))
     else:
         try:
-            sv.bind((socket.gethostbyname(socket.gethostname()),8000))
+            # sv.bind((socket.gethostbyname(socket.gethostname()),8000))
+            sv.bind((__getIPFromSocket(), 8000))
         except:
             msgs.errmsg("Default port 8000 is already in use")
             msgs.msg("Switching to another port")
-            sv.bind((socket.gethostbyname(socket.gethostname()),0))
+            # sv.bind((socket.gethostbyname(socket.gethostname()),0))
+            sv.bind((__getIPFromSocket(), 0))
 
     sv.listen()    
     ADDR = sv.getsockname()
-    msgs.msg("Server listening on:"+ Fore.YELLOW +f"{ADDR[0]}:{ADDR[1]}")
+    msgs.msg("Server listening on: "+ Fore.YELLOW +f"{ADDR[0]}:{ADDR[1]}")
     __checkNoVerify(noverify)
     flag = 1
     while flag:    
