@@ -39,7 +39,7 @@ def __sendFile(conn,fileloc):
 
 def host(fileloc,noverify=0,PORT=None):
     sv = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    if PORT==None:
+    if PORT!=None:
         msgs.msg(f"Using custom port {PORT}")
         sv.bind((socket.gethostbyname(socket.gethostname()),PORT))
     else:
